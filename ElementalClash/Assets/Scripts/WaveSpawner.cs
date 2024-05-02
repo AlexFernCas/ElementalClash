@@ -25,7 +25,7 @@ public class WaveSpawner : MonoBehaviour
         earthPower = 100;
         powerAdd = 3;
         unitCost = 10;
-        startTimer = 2;
+        startTimer = 5;
         spawnTimer = 0.5f;
         wavesTimer = 2;
         powerTimer = 1;
@@ -40,7 +40,7 @@ public class WaveSpawner : MonoBehaviour
         while (true)
         {
             if (scored) { 
-                yield return new WaitForSeconds(startTimer); 
+                yield return new WaitForSeconds(wavesTimer); 
                 Scored();
             }
             for (int i = 0; i < 3; i++)

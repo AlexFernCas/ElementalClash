@@ -16,6 +16,7 @@ public class GameMaster : MonoBehaviour
         public bool thereIsBonus;
         public Transform leftBonusSpawnPoint;
         public Transform rightBonusSpawnPoint;
+        public PointsCounter pointsCounter;
         public static bool leftDirectioner;
         public static bool leftBottomDirectioner;
         public static bool leftTopDirectioner;
@@ -29,8 +30,6 @@ public class GameMaster : MonoBehaviour
         private int bonusIndex;
         private int firstBonusTimer;
         private int takedBonus;
-        private int playerScore;
-        private int mlAgentScore;
 
     void Start()
     {
@@ -51,11 +50,9 @@ public class GameMaster : MonoBehaviour
         rightCenterDirectioner = false;
         rightDirectioner = false;
         thereIsBonus = false;
-        firstBonusTimer = 5;
-        bonusTimer = 5;
+        firstBonusTimer = 1;
+        bonusTimer = 1;
         bonusIndex = 0;
-        playerScore = 0;
-        mlAgentScore = 0;
         takedBonus = 0;
         StartCoroutine(BonusPrefab());
     }
@@ -106,33 +103,25 @@ public class GameMaster : MonoBehaviour
 
     public void PlayerScores ()
     {
-        playerScore++;
+        pointsCounter.playerScores();
         StopUnitSpawning();
         DestroyAllElementals();
         if (EndGame()) return;
         ResumeUnitSpawning();       
     }
 
-    public int GetPlayerScore(){
-        return playerScore;
-    }
-
     public void MLAgentScores()
     {
-        mlAgentScore++;
+        pointsCounter.mlAgentScores();
         StopUnitSpawning();
         DestroyAllElementals();
         if (EndGame()) return;
         ResumeUnitSpawning();
     }
 
-    public int GetMLAgentScore(){
-        return mlAgentScore;
-    }
-
     public bool EndGame()
     {
-        return playerScore >= 3 || mlAgentScore >= 3;
+        return pointsCounter.GetPlayerScore() >= 3 || pointsCounter.GetMLAgentScore() >= 3;
     }
     public void DestroyAllElementals()
     {

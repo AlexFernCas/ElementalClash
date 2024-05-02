@@ -92,13 +92,13 @@ public class MLAgent : Agent
     }
 
     public void CheckReward(){
-        if (GameMaster.Instance.GetPlayerScore() != lastPlayerScore)
+        if (GameMaster.Instance.pointsCounter.GetPlayerScore() != lastPlayerScore)
         {
             lastPlayerScore++;
             AddReward(-5f);
             EndEpisode();
         }
-        else if(GameMaster.Instance.GetMLAgentScore() != lastMLAgentscore)
+        else if(GameMaster.Instance.pointsCounter.GetMLAgentScore() != lastMLAgentscore)
         {
             lastMLAgentscore++;
             AddReward(10f);

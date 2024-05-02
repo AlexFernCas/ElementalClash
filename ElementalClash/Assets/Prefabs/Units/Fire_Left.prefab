@@ -108,7 +108,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &3332012486383462801
 Rigidbody:
@@ -188,23 +188,23 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 4dca202267c42ee4892ea0b7a67d4ecd, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 08a6824b30405e8479738515401e7aa2, type: 2}
+      objectReference: {fileID: 2100000, guid: 005926ef89c675444a9cefa68cd7515d, type: 2}
     - target: {fileID: -6906352945116191130, guid: 4dca202267c42ee4892ea0b7a67d4ecd, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 08a6824b30405e8479738515401e7aa2, type: 2}
+      objectReference: {fileID: 2100000, guid: 005926ef89c675444a9cefa68cd7515d, type: 2}
     - target: {fileID: -6516108887166737690, guid: 4dca202267c42ee4892ea0b7a67d4ecd, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 08a6824b30405e8479738515401e7aa2, type: 2}
+      objectReference: {fileID: 2100000, guid: 005926ef89c675444a9cefa68cd7515d, type: 2}
     - target: {fileID: -4780067047743340056, guid: 4dca202267c42ee4892ea0b7a67d4ecd, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 08a6824b30405e8479738515401e7aa2, type: 2}
+      objectReference: {fileID: 2100000, guid: 005926ef89c675444a9cefa68cd7515d, type: 2}
     - target: {fileID: -4440892224800369659, guid: 4dca202267c42ee4892ea0b7a67d4ecd, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: 08a6824b30405e8479738515401e7aa2, type: 2}
+      objectReference: {fileID: 2100000, guid: 005926ef89c675444a9cefa68cd7515d, type: 2}
     - target: {fileID: 919132149155446097, guid: 4dca202267c42ee4892ea0b7a67d4ecd, type: 3}
       propertyPath: m_Name
       value: elemental

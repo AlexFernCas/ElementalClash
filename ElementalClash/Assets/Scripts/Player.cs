@@ -16,7 +16,6 @@ public class Player : MonoBehaviour
     public BonusButton duplicateBonusButton;
     public Duplicate duplicate;
     public Transform spawnPoint;
-
     private int earthPower;
     private int firePower;
     private int waterPower;
@@ -38,7 +37,7 @@ public class Player : MonoBehaviour
             Destroy(Instance); 
             Instance = this;
         }
-        startTimer = 2;
+        startTimer = 5;
         spawnTimer = 0.5f;
         wavesTimer = 2;
         unitsByWave = 3;
@@ -68,7 +67,11 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(startTimer);
         while (true)
         {
-            if (scored) { yield return new WaitForSeconds(startTimer); Scored(); }
+            if (scored) 
+            {
+                Scored();
+                yield return new WaitForSeconds(wavesTimer);  
+            }
             for (int i = 0; i < unitsByWave; i++)
             {
                 SpawnEnemy();
