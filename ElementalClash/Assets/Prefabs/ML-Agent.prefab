@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 7646424049688807396}
   - component: {fileID: 8482262990781378521}
   - component: {fileID: 5628897177013189032}
-  - component: {fileID: 325045603014342062}
   - component: {fileID: 6279297665142285312}
   - component: {fileID: 285122867238122985}
   - component: {fileID: 4618999270339615162}
+  - component: {fileID: -8737394257240706232}
   m_Layer: 0
   m_Name: ML-Agent
   m_TagString: Untagged
@@ -111,30 +111,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &325045603014342062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5149187261241472106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 599a0391f9e5d1642a52aaa5325a6064, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyPrefab:
-  - {fileID: 6740620620952406500, guid: da62d010ff82ee147a83a5144ac20e54, type: 3}
-  - {fileID: 6740620620952406500, guid: 45ff5cf915b93b3468e990f3b5c6bfab, type: 3}
-  - {fileID: 6740620620952406500, guid: abafb243ba8d36a46b2912fecf4ed71d, type: 3}
-  - {fileID: 6740620620952406500, guid: 46d6ec7c3808af54d9da38ebaf109507, type: 3}
-  spawnPoint: {fileID: 111160584786381137}
-  powerAdd: 0
-  unitCost: 0
-  startTimer: 0
-  spawnTimer: 0
-  wavesTimer: 0
-  powerTimer: 0
 --- !u!114 &6279297665142285312
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,3 +177,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DecisionPeriod: 5
   TakeActionsBetweenDecisions: 1
+--- !u!114 &-8737394257240706232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5149187261241472106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a938479306c8314491dc68110f52d60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitsPrefab: []
+  unitsByWave: 0
+  unitsCost: 0
+  spawnTimer: 0

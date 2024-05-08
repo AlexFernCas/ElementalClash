@@ -28,6 +28,10 @@ TagManager:
   - duplicateBonus
   - duplicateRight
   - duplicateLeft
+  - Fire
+  - Water
+  - Wind
+  - Earth
   layers:
   - Default
   - TransparentFX

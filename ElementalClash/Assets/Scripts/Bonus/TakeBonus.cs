@@ -3,6 +3,7 @@ using UnityEngine;
 public class TakeBonus : MonoBehaviour
 {
     private string tagName;
+    public BonusManager bonusManager;
 
     void OnCollisionEnter(Collision collision)
     {
@@ -12,13 +13,13 @@ public class TakeBonus : MonoBehaviour
 
             if (tagName.Contains("Left"))
             {
-                Player.Instance.ActiveThreeSegBonusButton();
-                GameMaster.Instance.TakedBonus();
+                bonusManager.ActiveThreeSegBonusButton();
+                bonusManager.TakedBonus();
                 Destroy(gameObject); 
             }
             else if (tagName.Contains("Right"))
             {
-                GameMaster.Instance.TakedBonus();
+                bonusManager.TakedBonus();
                 Destroy(gameObject);
             }            
         } 
@@ -26,13 +27,13 @@ public class TakeBonus : MonoBehaviour
         {
             if (tagName.Contains("Left"))
             {
-                Player.Instance.ActiveWallBonusButton();
-                GameMaster.Instance.TakedBonus();
+                bonusManager.ActiveWallBonusButton();
+                bonusManager.TakedBonus();
                 Destroy(gameObject); 
             }
             else if (tagName.Contains("Right"))
             {
-                GameMaster.Instance.TakedBonus();
+                bonusManager.TakedBonus();
                 Destroy(gameObject);
             }           
         }
@@ -40,16 +41,21 @@ public class TakeBonus : MonoBehaviour
         {
             if (tagName.Contains("Left"))
             {
-                Player.Instance.ActiveDuplicateBonusButton();
-                GameMaster.Instance.TakedBonus();
+                bonusManager.ActiveDuplicateBonusButton();
+                bonusManager.TakedBonus();
                 Destroy(gameObject); 
             }
             else if (tagName.Contains("Right"))
             {
-                GameMaster.Instance.TakedBonus();
+                bonusManager.TakedBonus();
                 Destroy(gameObject);
             }           
         }
     } 
+
+    public void SetBonusManager (BonusManager bonusManager)
+    {
+        this.bonusManager = bonusManager;
+    }
 }
 

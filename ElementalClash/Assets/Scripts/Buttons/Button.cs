@@ -7,6 +7,7 @@ public class Button : MonoBehaviour
     public Sprite highlightedSprite;
     public Image fillImage;
     public Button button;
+    public Player user;
     private bool selected;
     private float power;
     private float maxPower;
@@ -18,6 +19,22 @@ public class Button : MonoBehaviour
 
     void Update()
     {
+        if (gameObject.CompareTag("Fire")){
+            power = user.GetFirePower();
+        } 
+        else if (gameObject.CompareTag("Water"))
+        {
+            power = user.GetWaterPower();
+        }
+        else if (gameObject.CompareTag("Wind"))
+        {
+            power = user.GetWindPower();
+        } 
+        else if (gameObject.CompareTag("Earth"))
+        {
+            power = user.GetEarthPower();
+        }
+
         if (selected)
         {
             fillImage.sprite = highlightedSprite;
@@ -40,9 +57,6 @@ public class Button : MonoBehaviour
         if (button!=null) button.Unselect();
     }
 
-    public void GetPower(int power){
-        this.power = (float)power;
-    }
 
     public void SetFillAmount(float fillAmount){
         fillImage.fillAmount = fillAmount;
