@@ -2,10 +2,6 @@ using UnityEngine;
 
 public class PlayerUnit : MonoBehaviour
 {
-    GameMaster.Element element;
-    string tagName;
-    public Vector3 position;
-    public Quaternion rotation;
    /* void Start()
     {
         gameObject.tag = tagName;

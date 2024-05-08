@@ -5,7 +5,6 @@ using Unity.MLAgents.Actuators;
 
 public class MLAgent : Agent
 {
-    private WaveSpawner spawner;
     private PlayerUnit [] playerUnits;
     private MLAgentUnit [] mlAgentUnits;
     public Directioner rightDirectioner;
@@ -18,7 +17,6 @@ public class MLAgent : Agent
 
     void Start()
     {
-        spawner = gameObject.GetComponent<WaveSpawner>();
         lastMLAgentscore = 0;
         lastPlayerScore = 0;
     }

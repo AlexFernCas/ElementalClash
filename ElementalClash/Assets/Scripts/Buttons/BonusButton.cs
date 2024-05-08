@@ -1,17 +1,20 @@
-public class BonusButton : Button
+using UnityEngine;
+using UnityEngine.UI;
+
+public class BonusButton : MonoBehaviour
 {
+    public Image fillImage;
     private float fullImage;
 
     void Start (){
         SetActive(false);
         fillImage.fillAmount = 100f;
-        GetPower(100);
     }
     public void FillAmount(){
         fillImage.fillAmount = fullImage;
     }
 
-    public new void SetActive (bool set){
+    public void SetActive (bool set){
         gameObject.SetActive(set);
     }
 
