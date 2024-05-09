@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using NUnit.Framework.Constraints;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -9,7 +10,8 @@ public class Player : MonoBehaviour
         Fire, 
         Water,
         Wind,
-        Earth
+        Earth,
+        None
     }
     private Element currentElement;
     private int earthPower;
@@ -39,6 +41,7 @@ public class Player : MonoBehaviour
         windPower = 100;
         powerAdd = 3;
         scored = false;
+        currentElement = Element.None;
         RandomElement();
         StartCoroutine(Spawn());
         StartCoroutine(AddAllPowers());
@@ -53,16 +56,22 @@ public class Player : MonoBehaviour
                 Scored();
                 yield return new WaitForSeconds(wavesTimer);  
             }
+                
+            if (gameObject.CompareTag("Agent"))
+            {
+               // RandomElement();
+            }
+
             for (int i = 0; i < unitsByWave; i++)
             {
-                SpawnEnemy();
+                SpawnUnit();
                 yield return new WaitForSeconds(spawnTimer);
             }
             yield return new WaitForSeconds(wavesTimer);
         }
     }
 
-    void SpawnEnemy()
+    void SpawnUnit()
     {
         switch(currentElement)
         {
@@ -75,12 +84,10 @@ public class Player : MonoBehaviour
                 if (waterPower < unitsCost) return;
                 waterPower -= unitsCost;
                 break;
-
             case Element.Wind: 
                 if (windPower < unitsCost) return;
                 windPower -= unitsCost;
                 break;
-
             case Element.Earth:
                 if (earthPower < unitsCost) return;
                 earthPower -= unitsCost;
@@ -88,7 +95,8 @@ public class Player : MonoBehaviour
         }
 
         int index = GetElementIndex();
-        Instantiate(unitsPrefab[index], transform.position, transform.rotation);    
+        Instantiate(unitsPrefab[index], transform.position, transform.rotation); 
+        
     }
 
     public IEnumerator AddAllPowers()
@@ -185,6 +193,10 @@ public class Player : MonoBehaviour
         };
     }
 
+    public bool HasElement()
+    {
+        return currentElement == Element.None;
+    }
     void RandomElement()
     {
         int randomIndex = UnityEngine.Random.Range(0, 4);

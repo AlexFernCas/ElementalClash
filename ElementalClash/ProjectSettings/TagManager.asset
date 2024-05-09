@@ -32,6 +32,8 @@ TagManager:
   - Water
   - Wind
   - Earth
+  - Agent
+  - User
   layers:
   - Default
   - TransparentFX

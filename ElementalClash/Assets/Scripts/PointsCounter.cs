@@ -1,46 +1,85 @@
 using UnityEngine;
-using TMPro;
 
 public class PointsCounter : MonoBehaviour
 {
     private int playerScore;
-    public TMP_Text playerScoreText;
     private int mlAgentScore;
-    public TMP_Text mlAgentScoreText;
     public Message message;
+    public GameObject zeroUser;
+    public GameObject oneUser;
+    public GameObject twoUser;
+    public GameObject threeUser;
+    public GameObject zeroMlAgent;
+    public GameObject oneMlAgent;
+    public GameObject twoMlAgent;
+    public GameObject threeMlAgent;
+
 
     void Start()
     {
         playerScore = 0;
-        playerScoreText.text = "0";
         mlAgentScore = 0;
-        mlAgentScoreText.text = "0";
-        
+
+        zeroUser.SetActive(true);
+        oneUser.SetActive(false);
+        twoUser.SetActive(false);
+        threeUser.SetActive(false);
+
+        zeroMlAgent.SetActive(true);
+        oneMlAgent.SetActive(false);
+        twoMlAgent.SetActive(false);
+        threeMlAgent.SetActive(false);
     }
 
     public void playerScores()
     {
         playerScore += 1;
-        playerScoreText.text = playerScore.ToString();
+
         if (playerScore == 3) 
         {
+            twoUser.SetActive(false);
+            threeUser.SetActive(true);
             message.PlayerWins();
-        } else {
-            message.PlayerScores();
+            return;
         }
+        else if (playerScore == 1) 
+        {
+            zeroUser.SetActive(false);
+            oneUser.SetActive(true);
 
+        }
+        else if (playerScore == 2)
+        {
+            oneUser.SetActive(false);
+            twoUser.SetActive(true);
+        }
+        message.PlayerScores();
     }
   
     public void mlAgentScores()
     {
         mlAgentScore += 1;
-        mlAgentScoreText.text = mlAgentScore.ToString();
+
         if (mlAgentScore == 3) 
         {
+            twoMlAgent.SetActive(false);
+            threeMlAgent.SetActive(true);
             message.MlAgentWins();
-        } else {
-            message.MlAgentScores();
+            return;
         }
+        else if (mlAgentScore == 1) 
+        {
+            zeroMlAgent.SetActive(false);
+            oneMlAgent.SetActive(true);
+
+        }
+        else if (mlAgentScore == 2)
+        {
+            oneMlAgent.SetActive(false);
+            twoMlAgent.SetActive(true);
+        }
+
+        message.MlAgentScores();
         
     }
 
