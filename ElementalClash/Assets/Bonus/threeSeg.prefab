@@ -107,7 +107,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 0.5
+  m_Radius: 3
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &3969812938828696974
 Rigidbody:
@@ -148,5 +148,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cea8882586c906f4fab40107af8e191e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 4582110299852345602, guid: d69879b7fb843e741b43d6ae54c20cf4, type: 3}
-  mlAgent: {fileID: 325045603014342062, guid: 2089cf682f78f8d4f9ad55b31d4cc75e, type: 3}
+  bonusManager: {fileID: 0}

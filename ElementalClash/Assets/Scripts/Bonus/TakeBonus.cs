@@ -4,7 +4,6 @@ public class TakeBonus : MonoBehaviour
 {
     private string tagName;
     public BonusManager bonusManager;
-
     void OnCollisionEnter(Collision collision)
     {
         tagName = collision.gameObject.tag;
@@ -19,6 +18,7 @@ public class TakeBonus : MonoBehaviour
             }
             else if (tagName.Contains("Right"))
             {
+                //mlAgent.HasThreeSegBonus();
                 bonusManager.TakedBonus();
                 Destroy(gameObject);
             }            
@@ -33,6 +33,7 @@ public class TakeBonus : MonoBehaviour
             }
             else if (tagName.Contains("Right"))
             {
+                //mlAgent.HasWallBonus();
                 bonusManager.TakedBonus();
                 Destroy(gameObject);
             }           
@@ -47,6 +48,7 @@ public class TakeBonus : MonoBehaviour
             }
             else if (tagName.Contains("Right"))
             {
+                //mlAgent.HasDuplicateBonus();
                 bonusManager.TakedBonus();
                 Destroy(gameObject);
             }           

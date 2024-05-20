@@ -1,16 +1,22 @@
 using UnityEngine;
 using TMPro;
+using Unity.Android.Gradle;
 
 public class Message : MonoBehaviour
 {
     public TMP_Text text;
     private float countdownTime = 5f;
+    public Player user;
 
     void Start()
     {
         InvokeRepeating("UpdateCountdown", 0f, 1f);
     }
 
+    void Update()
+    {
+
+    }
     void UpdateCountdown()
     {
         countdownTime -= 1f;
@@ -18,7 +24,7 @@ public class Message : MonoBehaviour
         {
             text.text = "¡Comienza la partida!";
             CancelInvoke("UpdateCountdown"); 
-            Invoke("HideMessage", 2f);
+            Invoke("NoElement", 2f);
         }
         else
         {
@@ -42,16 +48,30 @@ public class Message : MonoBehaviour
         InvokeRepeating("UpdateCountdown", 2f, 1f);
     }
 
-    public void PlayerWins (){
+    public void PlayerWins ()
+    {
         text.enabled = true;
         text.text = "¡Enhorabuena! Has ganado";
     }
 
-    public void MlAgentWins (){
+    public void MlAgentWins ()
+    {
         text.enabled = true;
         text.text = "¡Lástima! Has perdido";
     }
 
+    public void NoElement ()
+    {
+        if (user.HasElement())
+        {
+            text.enabled = true;
+            text.text = "¡Elige un elemento!";
+            Invoke("HideMessage", 2f);
+        }
+        else{
+            HideMessage();
+        }
+    }
 
     void HideMessage()
     {

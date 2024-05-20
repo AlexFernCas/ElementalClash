@@ -5,20 +5,29 @@ using Unity.MLAgents.Actuators;
 
 public class MLAgent : Agent
 {
+    public GameObject gMaster;
+    public Player mlAgent;
+    private BonusManager bonusManager;
+    private GameMaster gameMaster;
     private PlayerUnit [] playerUnits;
     private MLAgentUnit [] mlAgentUnits;
     public Directioner rightDirectioner;
     public Directioner rightTopDirectioner;
     public Directioner rightBottomDirectioner;
     public Directioner leftCenterDirectioner;
-
     public int lastPlayerScore;
     public int lastMLAgentscore;
+
+    private bool hasThreeSegBonus;
+    private bool hasWallBonus;
+    private bool hasDuplicateBonus;
 
     void Start()
     {
         lastMLAgentscore = 0;
         lastPlayerScore = 0;
+        bonusManager = gMaster.GetComponent<BonusManager>();
+        gameMaster = gMaster.GetComponent<GameMaster>();
     }
     
     void Update()
@@ -29,14 +38,14 @@ public class MLAgent : Agent
 
     public override void CollectObservations(VectorSensor sensor)
     {
-        bool leftDirectioner = GameMaster.Instance.GetLeftDirectioner();
-        bool leftBottomDirectioner = GameMaster.Instance.GetLeftBottomDirectioner();
-        bool leftTopDirectioner = GameMaster.Instance.GetLeftTopDirectioner();
-        bool leftCenterDirectioner = GameMaster.Instance.GetLeftCenterDirectioner();
-        bool rightDirectioner = GameMaster.Instance.GetRightDirectioner();
-        bool rightBottomDirectioner = GameMaster.Instance.GetRightBottomDirectioner();
-        bool rightTopDirectioner = GameMaster.Instance.GetRightTopDirectioner();
-        bool rightCenterDirectioner = GameMaster.Instance.GetRightCenterDirectioner();
+        bool leftDirectioner = gameMaster.GetLeftDirectioner();
+        bool leftBottomDirectioner = gameMaster.GetLeftBottomDirectioner();
+        bool leftTopDirectioner = gameMaster.GetLeftTopDirectioner();
+        bool leftCenterDirectioner = gameMaster.GetLeftCenterDirectioner();
+        bool rightDirectioner = gameMaster.GetRightDirectioner();
+        bool rightBottomDirectioner = gameMaster.GetRightBottomDirectioner();
+        bool rightTopDirectioner = gameMaster.GetRightTopDirectioner();
+        bool rightCenterDirectioner = gameMaster.GetRightCenterDirectioner();
 
         sensor.AddObservation(leftDirectioner);
         sensor.AddObservation(leftBottomDirectioner);
@@ -61,7 +70,7 @@ public class MLAgent : Agent
             sensor.AddObservation(mLAgentUnit.rotation);
         }*/
     }
-
+/*
     public override void OnActionReceived(ActionBuffers actions)
     {
         int actionSelected = actions.DiscreteActions[0];
@@ -69,34 +78,58 @@ public class MLAgent : Agent
         {
             case 0:
                 ChangeRightDirectioner();
-                Debug.Log("1");
                 break;
 
             case 1:
                 ChangeRightBottomDirectioner();
-                Debug.Log("2");
                 break;
 
             case 2:
                 ChangeRightTopDirectioner();
-                Debug.Log("3");
                 break;
             
             case 3:
                 ChangeLeftCenterDirectioner();
-                Debug.Log("4");
+                break;
+            
+            case 4:
+                UseWallBonus();
+                break;
+
+            case 5:
+                UseDuplicateBonus();
+                break;
+
+            case 6:
+                UseThreeSegBonus();
+                break;
+
+            case 7:
+                mlAgent.SetFireElement();
+                break;
+            
+            case 8:
+                mlAgent.SetWaterElement();
+                break;
+            
+            case 9: 
+                mlAgent.SetWindElement();
+                break;
+
+            case 10:
+                mlAgent.SetEarthElement();
                 break;
         }
     }
-
+*/
     public void CheckReward(){
-        if (GameMaster.Instance.pointsCounter.GetPlayerScore() != lastPlayerScore)
+        if (gameMaster.pointsCounter.GetPlayerScore() != lastPlayerScore)
         {
             lastPlayerScore++;
             AddReward(-5f);
             EndEpisode();
         }
-        else if(GameMaster.Instance.pointsCounter.GetMLAgentScore() != lastMLAgentscore)
+        else if(gameMaster.pointsCounter.GetMLAgentScore() != lastMLAgentscore)
         {
             lastMLAgentscore++;
             AddReward(10f);
@@ -107,24 +140,85 @@ public class MLAgent : Agent
     public void ChangeRightDirectioner()
     {
         rightDirectioner.OnClickDirectioner();
-        GameMaster.Instance.ChangeRightDirectioner();
+        gameMaster.ChangeRightDirectioner();
     }
 
     public void ChangeRightTopDirectioner()
     {
         rightTopDirectioner.OnClickDirectioner();
-        GameMaster.Instance.ChangeRightTopDirectioner();
+        gameMaster.ChangeRightTopDirectioner();
     }
 
     public void ChangeRightBottomDirectioner()
     {
         rightBottomDirectioner.OnClickDirectioner();
-        GameMaster.Instance.ChangeRightBottomDirectioner();
+        gameMaster.ChangeRightBottomDirectioner();
     }
 
     public void ChangeLeftCenterDirectioner()
     {
         leftCenterDirectioner.OnClickDirectioner();
-        GameMaster.Instance.ChangeLeftTopDirectioner();
+        gameMaster.ChangeLeftTopDirectioner();
+    }
+
+    public void UseWallBonus()
+    {
+        if (hasWallBonus)
+        {
+            HasWallBonus();
+            bonusManager.MlAgentWallBonus();
+            AddReward(5f);
+        }
+    }
+
+    public void UseThreeSegBonus(){
+        if (hasThreeSegBonus)
+        {
+            HasThreeSegBonus();
+            bonusManager.MlAgentUseThreeSegBonus();
+            AddReward(5);
+        }
+    }
+
+    public void UseDuplicateBonus(){
+        if (hasDuplicateBonus)
+        {
+            HasDuplicateBonus();
+            bonusManager.MlAgentDuplicateBonus();
+            AddReward(5);
+        }
+    }
+    public void HasThreeSegBonus(){
+        hasThreeSegBonus = !hasThreeSegBonus;
+    }
+
+    public void HasWallBonus(){
+        hasWallBonus = !hasWallBonus;
+    }
+
+    public void HasDuplicateBonus(){
+        hasDuplicateBonus = !hasDuplicateBonus;
+    }
+
+    public void SimulateAction (int number)
+    {
+        switch (number)
+        {
+            case 0:
+                ChangeRightDirectioner();
+                break;
+
+            case 1:
+                ChangeRightBottomDirectioner();
+                break;
+
+            case 2:
+                ChangeRightTopDirectioner();
+                break;
+            
+            case 3:
+                ChangeLeftCenterDirectioner();
+                break;
+        }
     }
 }

@@ -24,14 +24,17 @@ TagManager:
   - Fire_Left
   - threeSegBonus
   - wallBonus
-  - playerWall
   - duplicateBonus
-  - duplicateRight
-  - duplicateLeft
   - Fire
   - Water
   - Wind
   - Earth
+  - Agent
+  - User
+  - userWall
+  - mlAgentWall
+  - duplicateR
+  - duplicateL
   layers:
   - Default
   - TransparentFX
