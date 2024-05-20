@@ -7,10 +7,10 @@ public class Duplicate : MonoBehaviour
     string tagName;
     float destroyTimer;
 
-    public BonusTranslation fireUnit;
-    public BonusTranslation waterUnit;
-    public BonusTranslation windUnit;
-    public BonusTranslation earthUnit;
+    public BonusTranslation userFireUnit;
+    public BonusTranslation userWaterUnit;
+    public BonusTranslation userWindUnit;
+    public BonusTranslation userEarthUnit;
 
     void Start()
     {
@@ -21,23 +21,23 @@ public class Duplicate : MonoBehaviour
     
     void OnCollisionEnter(Collision collision)
     {
-        if (tagName == "duplicateRight" && nextDuplicate)
+        if (tagName == "duplicateR" && nextDuplicate)
         {
             if (collision.gameObject.CompareTag("Fire_Left"))
             {
-                Instantiate(fireUnit, transform.position, transform.rotation);            
+                Instantiate(userFireUnit, transform.position, transform.rotation);          
             }
             else if (collision.gameObject.CompareTag("Water_Left"))
             {
-                Instantiate(waterUnit, transform.position, transform.rotation);            
+                Instantiate(userWaterUnit, transform.position, transform.rotation);            
             }
             else if (collision.gameObject.CompareTag("Wind_Left"))
             {
-                Instantiate(windUnit, transform.position, transform.rotation);            
+                Instantiate(userWindUnit, transform.position, transform.rotation);            
             }
             else if (collision.gameObject.CompareTag("Earth_Left"))
             {
-                Instantiate(earthUnit, transform.position, transform.rotation);            
+                Instantiate(userEarthUnit, transform.position, transform.rotation);            
             }
         }
         nextDuplicate = !nextDuplicate;

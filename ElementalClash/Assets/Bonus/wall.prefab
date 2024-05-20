@@ -10,9 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2620234792527373225}
   - component: {fileID: 3890878362241992528}
-  - component: {fileID: 3900787939792660336}
   - component: {fileID: 1312685716828820885}
   - component: {fileID: 605661768686998845}
+  - component: {fileID: 4394868965754206330}
   m_Layer: 0
   m_Name: wall
   m_TagString: wallBonus
@@ -63,8 +63,36 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!65 &3900787939792660336
-BoxCollider:
+--- !u!114 &1312685716828820885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346423956859997069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cea8882586c906f4fab40107af8e191e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bonusManager: {fileID: 0}
+--- !u!114 &605661768686998845
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 346423956859997069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02cf1a47758e9924b9fd4aec7b349626, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeedZ: 30
+  rotationSpeedX: 0
+  rotationSpeedY: 0
+--- !u!135 &4394868965754206330
+SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -82,35 +110,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 5, y: 2, z: 0.5}
+  m_Radius: 3
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1312685716828820885
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 346423956859997069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cea8882586c906f4fab40107af8e191e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &605661768686998845
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 346423956859997069}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 02cf1a47758e9924b9fd4aec7b349626, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  rotationSpeedZ: 30
-  rotationSpeedX: 0
-  rotationSpeedY: 0
 --- !u!1001 &8487044054204166561
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -12,7 +12,7 @@ public class Wall : MonoBehaviour
     }
     void OnCollisionEnter(Collision collision)
     {
-        if (gameObject.tag == "playerWall")
+        if (gameObject.tag == "userWall")
         {
             if(collision.gameObject.tag.Contains("Right"))
             {

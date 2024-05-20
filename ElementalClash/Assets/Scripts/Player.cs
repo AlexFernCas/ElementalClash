@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using NUnit.Framework.Constraints;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -42,7 +40,6 @@ public class Player : MonoBehaviour
         powerAdd = 3;
         scored = false;
         currentElement = Element.None;
-        RandomElement();
         StartCoroutine(Spawn());
         StartCoroutine(AddAllPowers());
     }
@@ -59,13 +56,16 @@ public class Player : MonoBehaviour
                 
             if (gameObject.CompareTag("Agent"))
             {
-               // RandomElement();
+               RandomElement();
             }
 
-            for (int i = 0; i < unitsByWave; i++)
+            if (currentElement != Element.None)
             {
-                SpawnUnit();
-                yield return new WaitForSeconds(spawnTimer);
+                for (int i = 0; i < unitsByWave; i++)
+                {
+                    SpawnUnit();
+                    yield return new WaitForSeconds(spawnTimer);
+                }
             }
             yield return new WaitForSeconds(wavesTimer);
         }

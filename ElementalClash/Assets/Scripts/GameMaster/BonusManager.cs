@@ -11,7 +11,9 @@ public class BonusManager : MonoBehaviour
     public BonusButton wallBonusButton;
     public BonusButton duplicateBonusButton;
     public Wall userWall;
+    public Wall mlAgentWall;
     public Duplicate userDuplicate;
+    public Duplicate mlAgentDuplicate;
     public Transform leftBonusSpawnPoint;
     public Transform rightBonusSpawnPoint;
     private int bonusTimer;
@@ -48,7 +50,9 @@ public class BonusManager : MonoBehaviour
                 TakeBonus bonus2 = b2.GetComponent<TakeBonus>();
 
                 bonus1.SetBonusManager(this);
+                //bonus1.SetMlAgent(mlAgent.GetComponent<MLAgent>());
                 bonus2.SetBonusManager(this);
+                //bonus2.SetMlAgent(mlAgent.GetComponent<MLAgent>());
                 BonusIndex();
             }
             yield return null;
@@ -89,10 +93,15 @@ public class BonusManager : MonoBehaviour
         }
     }
 
-    public void UseWallBonus()
+    public void UserWallBonus()
     {
         wallBonusButton.SetActive(false);
         userWall.SetActive(true);
+    }
+
+    public void MlAgentWallBonus()
+    {
+        mlAgentWall.SetActive(true);
     }
 
     public void ActiveThreeSegBonusButton ()
@@ -106,17 +115,23 @@ public class BonusManager : MonoBehaviour
     public void UserUseThreeSegBonus()
     {
         threeSegBonusButton.SetActive(false);
-        StartCoroutine(UserThreeSegBonus());
+        StartCoroutine(ThreeSegBonus(user));
     }
-    IEnumerator UserThreeSegBonus ()
+
+    public void MlAgentUseThreeSegBonus()
     {
-        user.unitsByWave = 6;
-        user.spawnTimer = 0.25f;
-        user.unitsCost = 5;
+        StartCoroutine(ThreeSegBonus(mlAgent));
+    }
+
+    IEnumerator ThreeSegBonus (Player player)
+    {
+        player.unitsByWave = 6;
+        player.spawnTimer = 0.25f;
+        player.unitsCost = 5;
         yield return new WaitForSeconds(3f);
-        user.unitsByWave = 3;
-        user.spawnTimer = 0.5f;
-        user.unitsCost = 10;
+        player.unitsByWave = 3;
+        player.spawnTimer = 0.5f;
+        player.unitsCost = 10;
     }
 
     public void ActiveDuplicateBonusButton()
@@ -131,5 +146,10 @@ public class BonusManager : MonoBehaviour
     {
         duplicateBonusButton.SetActive(false);
         userDuplicate.SetActive(true);
+    }
+
+    public void MlAgentDuplicateBonus()
+    {
+        mlAgentDuplicate.SetActive(true);
     }
 }
